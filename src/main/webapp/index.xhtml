@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" type="text/css" href="/EnterpriseDemo/resource/css/common.css"  />
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form id="mainForm">
+                <p:messages autoUpdate="true" />
+                <p:panelGrid columns="2" >
+                    <p:outputLabel value="Ad : " />
+                    <p:inputText id="adText" value="#{indexBean.kullanici.kullaniciAd}" required="true" requiredMessage="Lütfen isim alanını boş bırakmayınız." >
+                        <p:ajax event="blur"  />
+                    </p:inputText>
+                    <p:outputLabel value="Soyad : " />
+                    <p:inputText id="soyadText" value="#{indexBean.kullanici.kullaniciSoyad}" required="true" requiredMessage="Lütfen isim alanını boş bırakmayınız." >
+                        <p:ajax event="blur"  />
+                    </p:inputText>
+                    <p:outputLabel value="Cinsiyet : " />
+                    <p:inputText id="cinsiyetText" value="#{indexBean.kullanici.cinsiyet}" required="true" requiredMessage="Lütfen isim alanını boş bırakmayınız." >
+                        <p:ajax event="blur"  />
+                    </p:inputText>
+                    <p:outputLabel value="Doğum Tarihi : " />
+                    <p:calendar id="dogumTarihiCal" value="#{indexBean.kullanici.dogumTarihi}" required="true" requiredMessage="Lütfen isim alanını boş bırakmayınız." >
+                        <p:ajax event="blur"  />
+                    </p:calendar>
+                    <p:outputLabel value="E-mail : " />
+                    <p:inputText id="emailText" value="#{indexBean.kullanici.email}" required="true" requiredMessage="Lütfen isim alanını boş bırakmayınız." >
+                        <p:ajax event="blur"  />
+                    </p:inputText>
+                    <p:outputLabel value="Şifre : " />
+                    <p:password id="passwordText" value="#{indexBean.kullanici.sifre}" required="true" requiredMessage="Lütfen isim alanını boş bırakmayınız." >
+                        <p:ajax event="blur"  />
+                    </p:password>
+
+                    <p:commandButton value="Tıkla" actionListener="#{indexBean.kaydet()}" icon="ui-icon-trash"/>
+                </p:panelGrid>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
