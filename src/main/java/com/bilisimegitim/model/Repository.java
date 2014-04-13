@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Adem
  */
 @Entity
-@Table(name = "repository")
+@Table(catalog = "adem", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Repository.findAll", query = "SELECT r FROM Repository r"),
@@ -37,17 +37,17 @@ public class Repository implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "repoistory_id")
+    @Column(name = "repoistory_id", nullable = false)
     private Integer repoistoryId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "repository_name")
+    @Column(name = "repository_name", nullable = false, length = 50)
     private String repositoryName;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "repository_path")
+    @Column(name = "repository_path", nullable = false, length = 255)
     private String repositoryPath;
 
     public Repository() {
