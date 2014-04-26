@@ -31,7 +31,7 @@ public class KullaniciService {
     private MusteriFacade musteriFacade;
     
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void kullaniciOlustur(Kullanici kullanici){
+    public void kullaniciOlustur(Kullanici kullanici) throws Exception{
         kullaniciFacade.create(kullanici);
     }
     
