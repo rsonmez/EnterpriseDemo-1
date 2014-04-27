@@ -10,9 +10,13 @@
     </h:head>
     <h:body>
         <f:view>
+            <h:form>
+            <p:commandButton value="Giriş yap" onclick="signInDialogWidget.show();" />
+            <p:commandButton value="Kapat dialog" onclick="signInDialogWidget.hide();" />
+            <p:commandButton value="Biriş yap" action="test" />
+            </h:form>
             <h:form id="mainForm">
                 <p:growl autoUpdate="true" showDetail="true" />
-                <p:messages autoUpdate="true" showDetail="true" />
                 <p:panelGrid columns="2" >
                     <p:outputLabel value="Ad : " />
                     <p:inputText id="adText" value="#{indexBean.kullanici.kullaniciAd}" required="true" requiredMessage="Lütfen isim alanını boş bırakmayınız." >
@@ -39,10 +43,68 @@
                         <p:ajax event="blur"  />
                     </p:password>
 
-                    <p:commandButton value="Tıkla" actionListener="#{indexBean.kaydet()}" icon="ui-icon-trash"/>
+                    <p:commandButton value="kaydet" actionListener="#{indexBean.kaydet()}" update=":mainForm" icon="ui-icon-trash"/>
                 </p:panelGrid>
+            </h:form>
+            <h:form>
+                <p:dataTable id="kullaniciTablo" var="kullanici" value="#{indexBean.kullaniciListesi}">  
+                    <p:column headerText="Id">  
+                        <h:outputText value="#{kullanici.kullaniciId}" />  
+                    </p:column>  
+
+                    <p:column headerText="Ad" filterBy="#{kullanici.kullaniciAd}" filterMatchMode="endsWith" sortBy="#{kullanici.kullaniciAd}">  
+                        <h:outputText value="#{kullanici.kullaniciAd}" />  
+                    </p:column>  
+
+                    <p:column headerText="Soyad" filterBy="#{kullanici.kullaniciSoyad}" filterMatchMode="exact">  
+                        <h:outputText value="#{kullanici.kullaniciSoyad}" />  
+                    </p:column>  
+
+                    <p:column headerText="E-posta">  
+                        <h:outputText value="#{kullanici.email}" />  
+                    </p:column> 
+
+                    <p:column headerText="Cinsiyet">  
+                        <h:outputText value="#{kullanici.cinsiyet eq 'E' ? 'Erkek' : 'Kadın'}" />  
+                    </p:column> 
+
+                    <p:column headerText="Doğum Tarihi">  
+                        <h:outputText value="#{kullanici.dogumTarihi}" />  
+                    </p:column> 
+
+                </p:dataTable>
+                <p:commandButton value="Kullanıcıları Getir" actionListener="#{indexBean.kullaniciListesiniGetir()}" update="kullaniciTablo" />
+            </h:form>
+
+            <h:form>
+                <p:dialog id="signInDialog" header="Sign in" widgetVar="signInDialogWidget"  >
+                    <p:panelGrid>
+                        <p:row>
+                            <p:column>
+                                E-posta : 
+                            </p:column>
+                            <p:column>
+                                <p:inputText value="#{indexBean.yeniKullanici.email}" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                Şifre : 
+                            </p:column>
+                            <p:column>
+                                <p:password value="#{indexBean.yeniKullanici.sifre}" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column> 
+                            </p:column>
+                            <p:column>
+                                <p:commandButton value="Giriş yap" actionListener="#{indexBean.signIn()}" />
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:dialog>
             </h:form>
         </f:view>
     </h:body>
 </html>
-
