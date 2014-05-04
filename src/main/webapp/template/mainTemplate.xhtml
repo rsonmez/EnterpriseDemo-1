@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Policy Admin Panel</title>
+            </f:facet>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+            <link rel="SHORTCUT ICON" href="#{request.contextPath}/resource/image/favicon.png"/>
+            <link href="#{request.contextPath}/resource/css/common.css" type="text/css" rel="stylesheet" /> 
+            <script type='text/javascript' src='#{request.contextPath}/resource/js/primefaces_locale_tr.js'></script>
+
+            <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+            <ui:insert name="head"></ui:insert>
+        </h:head>
+
+        <h:body>
+            <div class="shadowed-box" style="margin: 0 auto; width:1100px; border: none; background-color: #FFFFFF;margin-top: 10px; margin-bottom: 40px;">
+                <p:panelGrid >
+                    <p:row>
+                        <p:column colspan="2">
+                            <h:form id="headerForm">
+                                <div id="header">
+                                    <div style="width:100%; margin:0 auto;">
+                                        <img src="#{request.contextPath}/resource/image/logo.png" style="float:left"/>
+                                        Deneme yanılma yöntemi
+                                    </div>
+
+                                </div>
+                            </h:form>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column style="vertical-align: top;">
+                            <div style="float: right; width: 100%; height: 100%;">
+                                <h:form id="menuForm">
+                                    <div id="menu" style="float: left; width: 250px; ">
+                                        <p:panelMenu>  
+                                                <p:submenu label="Nitelik Değer"> 
+                                                    <p:menuitem value="Nitelik Değer Tanımlama" url="/insession/property/propertyValueOperation/createPropertyValuePage.jsf" />  
+                                                </p:submenu>
+                                                <p:submenu label="Nitelik"> 
+                                                    <p:menuitem value="Nitelik Görüntüleme" url="/insession/property/propertyBrowser/propertyBrowserPage.jsf"/> 
+                                                    <p:menuitem value="Nitelik Oluşturma" url="/insession/property/propertyOperation/createPropertyPage.jsf"/> 
+                                                    <p:menuitem value="Nitelik Düzeltme" url="/insession/property/propertyOperation/updatePropertyPage.jsf"/> 
+                                                </p:submenu>
+                                        </p:panelMenu >  
+                                        <p:panelMenu>  
+                                            <p:submenu label="Ürün">  
+                                                <p:menuitem value="Ürün Tanımlama" url="/insession/product/productPage.jsf" /> 
+                                                <p:menuitem value="Ürün Görüntüleme" url="/insession/product/productPage.jsf" /> 
+                                                <p:menuitem value="Ürün Düzeltme" url="/insession/product/productPage.jsf" /> 
+                                            </p:submenu>  
+                                        </p:panelMenu >  
+                                    </div>
+                                </h:form>
+                            </div>
+                        </p:column>
+                        <p:column style="vertical-align: top;">
+                            <p:growl id="growlMessage" showDetail="true" autoUpdate="true" sticky="true"/> 
+                            <ui:insert name="content"/>
+                            <p:ajaxStatus style="width:32px;height:32px;position:fixed;right:5px;bottom:5px">  
+                                <f:facet name="start">  
+                                    <p:graphicImage value="/resource/image/ajax-loader.gif" />  
+                                </f:facet>  
+
+                                <f:facet name="complete">  
+                                    <h:outputText value="" />  
+                                </f:facet>  
+                            </p:ajaxStatus>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </div>
+            <!--p:log /-->
+        </h:body>
+    </f:view>
+</html>
